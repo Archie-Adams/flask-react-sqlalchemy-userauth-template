@@ -31,3 +31,6 @@ backend/__pycache__
 
 # database
 backend/db/app.db
+
+# python
+__pycache__
