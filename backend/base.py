@@ -20,3 +20,4 @@ from api import _after_request
 # Endpoints
 from api import auth
 from api import profile
+from api import test
