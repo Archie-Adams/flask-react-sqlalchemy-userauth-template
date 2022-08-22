@@ -28,3 +28,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Testing the application
 Click on the button that appears on the page to make the request to the API endpoint in the backend. 
+
+
+## Source
+https://dev.to/nagatodev/how-to-add-login-authentication-to-a-flask-and-react-application-23i7
