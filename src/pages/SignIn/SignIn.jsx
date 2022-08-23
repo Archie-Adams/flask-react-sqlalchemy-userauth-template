@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from "react";
 import axios from "axios";
 
-function Login(props) {
-
+function SignIn({ setToken }) {
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: ""
@@ -11,21 +10,22 @@ function Login(props) {
   function logMeIn(event) {
     axios({
       method: "POST",
-      url: "api/auth/token",
+      url: "/api/auth/token",
       data: {
         email: loginForm.email,
         password: loginForm.password
       }
+    }).then((response) => {
+      const token = response.data.access_token;
+      setToken(token);
+      window.location.href = '/'
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error.response)
+        console.log(error.response.status)
+        console.log(error.response.headers)
+      }
     })
-      .then((response) => {
-        props.setToken(response.data.access_token)
-      }).catch((error) => {
-        if (error.response) {
-          console.log(error.response)
-          console.log(error.response.status)
-          console.log(error.response.headers)
-        }
-      })
 
     setLoginForm(({
       email: "",
@@ -66,4 +66,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default SignIn

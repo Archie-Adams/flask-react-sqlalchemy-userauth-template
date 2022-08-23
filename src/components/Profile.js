@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import axios from "axios";
 
-function Profile(props) {
-
+function Profile() {
   const [profileData, setProfileData] = useState(null)
   function getData() {
     axios({
       method: "GET",
       url: "/api/profile",
       headers: {
-        Authorization: 'Bearer ' + props.token
+        Authorization: 'Bearer ' + localStorage.getItem("token")
       }
     })
       .then((response) => {

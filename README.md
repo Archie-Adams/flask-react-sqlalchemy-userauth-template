@@ -32,3 +32,12 @@ Click on the button that appears on the page to make the request to the API endp
 
 ## Source
 https://dev.to/nagatodev/how-to-add-login-authentication-to-a-flask-and-react-application-23i7
+
+https://www.permify.co/post/jwt-authentication-in-react
+
+https://blog.logrocket.com/complete-guide-authentication-with-react-router-v6/
+
+https://stackoverflow.com/a/68441728/7799141
+https://blog.miguelgrinberg.com/post/how-to-create-a-react--flask-project
+https://blog.miguelgrinberg.com/post/how-to-deploy-a-react--flask-project
+https://reactrouter.com/docs/en/v6/getting-started/tutorial#active-links

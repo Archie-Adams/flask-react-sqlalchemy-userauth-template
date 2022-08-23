@@ -21,3 +21,6 @@ from api import _after_request
 from api import auth
 from api import profile
 from api import test
+
+# TODO: Implement db for user login.
+# TODO: Add data on db create.

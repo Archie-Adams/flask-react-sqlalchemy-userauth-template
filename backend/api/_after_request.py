@@ -22,5 +22,5 @@ def refresh_expiring_jwts(response):
         response.data = json.dumps(data)
     return response
   except (RuntimeError, KeyError):
-    # Case where there is not a valid JWT. Just return the original respone
+    # Case where there is not a valid JWT. Just return the original response.
     return response
