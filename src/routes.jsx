@@ -1,18 +1,17 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 
-import { history } from './utils/history';
+import history from './utils/history';
 import useToken from './utils/useToken';
-
-import Home from "./pages/home/home"
-import SignIn from "./pages/SignIn/SignIn"
-// import SignUp from "./pages/SignUp/SignUp"
-import NotFound from './pages/notFound/notFound'
 
 import AuthLayout from "./layouts/AuthLayout/AuthLayout";
 import AppLayout from "./layouts/AppLayout/AppLayout";
 
-import Profile from "./components/Profile";
+import SignIn from "./pages/SignIn/SignIn"
+import SignUp from "./pages/SignUp/SignUp"
+import Home from "./pages/Home/Home"
+import Profile from "./pages/Profile/Profile";
+import NotFound from './pages/NotFound/notFound'
 
 function Router() {
   const { token, removeToken, setToken } = useToken();
@@ -23,19 +22,17 @@ function Router() {
 
   // TODO: Need to setup a formatter plus rules.
   // TODO: Need to put all tutorials followed in readme.
-  // TODO: Need to put frontend in a frontend directory.
-  //       - Update package.json
-  //       - Add new package.json in root with scripts.
 
   return (
-    // TODO: What is history for?
     <Routes history={history}>
       <Route path="/auth" element={<AuthLayout />}>
+        <Route index element={<Navigate to="/auth/signin" replace />} />
         <Route path="signin" element={<SignIn setToken={setToken} />} />
-        {/* <Route path="signup" element={<SignUp />} /> */}
+        <Route path="signup" element={<SignUp setToken={setToken} />} />
       </Route>
 
       <Route path="/" element={<AppLayout removeToken={removeToken} />}>
+        <Route index element={<Navigate to="/home" replace />} />
         <Route path="home" element={<Home />} />
         <Route path="profile" element={<Profile />} />
       </Route>

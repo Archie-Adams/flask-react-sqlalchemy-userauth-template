@@ -1,14 +1,9 @@
 from base import api
 from flask import request, jsonify
-from flask_jwt_extended import (
-  create_access_token, 
-  unset_jwt_cookies,
-  jwt_required
-)
+from flask_jwt_extended import create_access_token, unset_jwt_cookies
 
-# TODO: api/auth/signin
-@api.route('/api/auth/token', methods=["POST"])
-def create_token():
+@api.route('/api/auth/signin', methods=["POST"])
+def sign_in():
   email = request.json.get("email", None)
   password = request.json.get("password", None)
   if email != "test" or password != "test":
@@ -18,17 +13,13 @@ def create_token():
   response = {"access_token":access_token}
   return response
 
-# TODO: api/auth/signup
+@api.route('/api/auth/signup', methods=["POST"])
+def sign_up():
+  # TODO: Implement.
+  return {}
 
-# TODO: api/auth/signout
-@api.route("/api/auth/logout", methods=["POST"])
-def logout():
+@api.route("/api/auth/signout", methods=["POST"])
+def sign_out():
   response = jsonify({"msg": "logout successful"})
   unset_jwt_cookies(response)
-  return response
-
-@api.route('/api/auth/verify')
-@jwt_required()
-def verify():
-  response = jsonify({"msg" : "Token Verified"})
   return response

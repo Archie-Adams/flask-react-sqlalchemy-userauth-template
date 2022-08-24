@@ -1,5 +1,6 @@
-import { Navigate, Outlet, Link } from "react-router-dom";
-import axios from "axios";
+import { Navigate, Outlet } from "react-router-dom";
+import QueryNavLink from "../../components/QueryNavLink";
+import './AuthLayout.scss';
 
 const AuthLayout = () => {
   let hasToken = false;
@@ -8,17 +9,28 @@ const AuthLayout = () => {
   if (hasToken) {
     // User is authenticated.
     // TODO: Check the token is not expired, or verify it with the server.
-    return <Navigate to="/home" />
+    return <Navigate to="/" />
   }
 
   return (
-    <div>
-      <nav>
-        {/* TODO: Active link */}
-        <Link to="/auth/signin">Sign In</Link>
-        <Link to="/auth/signup">Sign Up</Link>
-      </nav>
-      <Outlet />
+    <div className="auth-layout-container">
+      <div className="auth-layout">
+        <nav className="auth-nav">
+          <QueryNavLink
+            className={({ isActive }) => `link ${isActive ? 'active-link' : ''}`}
+            to="/auth/signin"
+          >
+            Sign In
+          </QueryNavLink>
+          <QueryNavLink
+            className={({ isActive }) => `link ${isActive ? 'active-link' : ''}`}
+            to="/auth/signup"
+          >
+            Sign Up
+          </QueryNavLink>
+        </nav>
+        <Outlet />
+      </div>
     </div>
   )
 };

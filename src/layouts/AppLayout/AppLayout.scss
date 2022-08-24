@@ -1,0 +1,53 @@
+.app-layout {
+  .app-page {
+    padding: 1rem;
+
+    header {
+      display: flex;
+      justify-content: space-between;
+
+      h1 {
+        margin: 0;
+        line-height: 1em;
+        font-size: 1.65rem;
+        color: rgb(70, 148, 148);
+      }
+
+      .button {
+        text-align: center;
+        padding: 0.4rem 0.6rem;
+        color: white;
+        background-color: rgb(198, 65, 65);
+        border-radius: 23px;
+        font-size: 0.7rem;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .app-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    /* Height of the footer*/
+    height: 3rem;
+    background: grey;
+
+    display: flex;
+    overflow: hidden;
+    border-radius: 23px 23px 0px 0px;
+
+    .link {
+      padding: 0.5rem;
+      font-weight: 500;
+      width: 50%;
+      text-align: center;
+      color: white;
+      text-decoration: none;
+    }
+
+    .active-link {
+      background-color: rgb(70, 148, 148);
+    }
+  }
+}

@@ -10,7 +10,7 @@ function SignIn({ setToken }) {
   function logMeIn(event) {
     axios({
       method: "POST",
-      url: "/api/auth/token",
+      url: "/api/auth/signin",
       data: {
         email: loginForm.email,
         password: loginForm.password
@@ -44,8 +44,8 @@ function SignIn({ setToken }) {
   }
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="sign-in">
+      <h1>Sign In</h1>
       <form className="login">
         <input onChange={handleChange}
           type="email"
@@ -60,7 +60,7 @@ function SignIn({ setToken }) {
           placeholder="Password"
           value={loginForm.password} />
 
-        <button onClick={logMeIn}>Submit</button>
+        <div onClick={logMeIn} className="button">Submit</div>
       </form>
     </div>
   );

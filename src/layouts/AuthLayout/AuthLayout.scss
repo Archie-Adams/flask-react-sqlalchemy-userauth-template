@@ -1,0 +1,72 @@
+.auth-layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-items: center;
+
+  .auth-layout {
+    border: 2px solid rgb(70, 148, 148);
+    border-radius: 23px;
+    width: 80%;
+    max-width: 400px;
+    margin: auto;
+    overflow: hidden;
+
+    .auth-nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      background-color: rgb(151, 201, 201);
+
+      .link {
+        padding: 0.5rem;
+        font-weight: 500;
+        width: 50%;
+        text-align: center;
+        color: white;
+        text-decoration: none;
+        border-bottom: 2px solid rgb(70, 148, 148);
+      }
+
+      .active-link {
+        background-color: rgb(70, 148, 148);
+      }
+    }
+
+    .sign-in,
+    .sign-up {
+      h1 {
+        width: 100%;
+        text-align: center;
+        margin: 1rem 0;
+        color: rgb(11, 121, 121);
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        * {
+          margin-top: 1rem;
+        }
+
+        input {
+          font-size: 1.3em;
+          width: 90%;
+        }
+
+        .button {
+          width: 100%;
+          border-top: 2px solid rgb(70, 148, 148);
+          border-radius: 5px;
+          text-align: center;
+          padding: 0.5rem;
+          background-color: rgb(70, 148, 148);
+          color: white;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
