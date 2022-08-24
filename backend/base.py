@@ -12,7 +12,7 @@ migrate = Migrate(api, db, directory="./db/migrations")
 jwt = JWTManager(api)
 
 # Models
-from db import user
+from db import User
 
 # Token updater
 from api import _after_request
