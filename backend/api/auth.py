@@ -3,6 +3,7 @@ from db.User import User
 from flask import request, jsonify
 from flask_jwt_extended import create_access_token, unset_jwt_cookies
 
+# TODO: Needs secure password storage.
 
 # ---------------------------------- Helpers --------------------------------- #
 
@@ -19,21 +20,32 @@ def create_access_token_response(identity):
 @api.route('/api/auth/signin', methods=["POST"])
 def sign_in():
   email = request.json.get("email", None)
+  if not email:
+    return {"msg": "Email must be present."}, 401
+
   password = request.json.get("password", None)
+  if not password:
+    return {"msg": "Password must be present."}, 401
 
   user = get_user_by_email(email)
   if not user or not password == user.password:
-    return {"msg": "Wrong email or password"}, 401
+    return {"msg": "Wrong email or password."}, 401
 
   return create_access_token_response(identity=email)
 
 @api.route('/api/auth/signup', methods=["POST"])
 def sign_up():
   email = request.json.get("email", None)
-  password = request.json.get("password", None)
+  if not email:
+    return {"msg": "Email must be present."}, 401
 
-  if get_user_by_email(email):
-    return {"msg": "Email already registered."}, 400
+  password = request.json.get("password", None)
+  if not password:
+    return {"msg": "Password must be present."}, 401
+
+  user = get_user_by_email(email)
+  if user:
+    return {"msg": "Email already registered."}, 401
 
   db.session.add(
     User(
