@@ -9,35 +9,39 @@ function SignUp({ setToken }) {
   })
 
   function SignMeUp(event) {
-    // TODO: Handle checking passwords match.
+    if (signUpForm.password !== signUpForm.passwordConfirm) {
+      alert("Both passwords must match!");
+    } else if (signUpForm.email === "") {
+      alert("You cannot have an empty email.")
+    } else if (signUpForm.password === "" || signUpForm.passwordConfirm === "") {
+      alert("You cannot have an empty password.")
+    } else {
+      axios({
+        method: "POST",
+        url: "/api/auth/signup",
+        data: {
+          email: signUpForm.email,
+          password: signUpForm.password
+        }
+      }).then((response) => {
+        const token = response.data.access_token;
+        setToken(token);
+        window.location.href = '/'
+        setSignUpForm(({
+          email: "",
+          password: "",
+          passwordConfirm: "",
+        }))
+      }).catch((error) => {
+        if (error.response.data.msg) {
+          alert(error.response.data.msg);
+        } else {
+          alert("There was an error processing your request, please try again.");
+        }
+      })
+    }
 
-    axios({
-      method: "POST",
-      url: "/api/auth/signup",
-      data: {
-        email: signUpForm.email,
-        password: signUpForm.password
-      }
-    }).then((response) => {
-      // TODO: Handle errors like duplicate accounts etc.
-      const token = response.data.access_token;
-      setToken(token);
-      window.location.href = '/'
-    }).catch((error) => {
-      if (error.response) {
-        console.log(error.response)
-        console.log(error.response.status)
-        console.log(error.response.headers)
-      }
-    })
-
-    setSignUpForm(({
-      email: "",
-      password: "",
-      passwordConfirm: "",
-    }))
-
-    event.preventDefault()
+    event.preventDefault();
   }
 
   function handleChange(event) {
